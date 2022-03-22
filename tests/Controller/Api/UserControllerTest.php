@@ -7,11 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-    /**
-     * @test
-     * @group e2e
-     */
-    public function testGetDetails(): void
+    /** @test */
+    public function testSingleGetDetails(): void
+    {
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $user = $userRepository->findOneByEmail('james@gmail.com');
+        $client->loginUser($user);
+
+        $client->request('GET', '/api/users/details');
+        $this->assertResponseIsSuccessful();
+    }
+
+    /** @test */
+    public function testDoubleGetDetails(): void
     {
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
