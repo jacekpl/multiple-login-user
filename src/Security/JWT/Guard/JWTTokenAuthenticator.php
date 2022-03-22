@@ -63,11 +63,6 @@ class JWTTokenAuthenticator extends AbstractGuardAuthenticator
         try {
             $username = $this->jwtManager->readClaim($token, 'username');
             $user = $userProvider->loadUserByUsername($username);
-
-            //allow to attach ROLE_SELLER role dynamically from token. It's used for ordering by eie portal seller
-            if(in_array(Roles::ROLE_SELLER, $this->jwtManager->getRoles($token))) {
-                $user->setRoles(array_unique(array_merge($user->getRoles(), [Roles::ROLE_SELLER])));
-            }
         } catch (UsernameNotFoundException $e) {
             throw new UserNotFoundException($username);
         } catch (\OutOfBoundsException $e) {

@@ -21,7 +21,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
-        $this->createUser('James', 'james@gmail.com', true, '123456', [Roles::ROLE_USER]);
+        $this->createUser('James', 'james@gmail.com', '123456', [Roles::ROLE_USER]);
 
         $this->manager->flush();
     }
