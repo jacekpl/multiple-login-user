@@ -1,0 +1,20 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Test err
+            description: err
+            version: 1.0
+        securityDefinitions:
+            JWT:
+                type: apiKey
+                description: 'Bearer {token}'
+                name: authorization
+                in: header
+    areas: # to filter documented areas
+        default:
+            path_patterns:
+                - ^/api(?!/doc$)
+            with_annotation: true
+        internal:
+            path_patterns:
+                - ^/api(?!/doc.*$)
