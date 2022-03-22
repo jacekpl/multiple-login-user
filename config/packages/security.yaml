@@ -28,15 +28,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        roomsketcher:
-            pattern: ^/api/roomsketcher/assignments/notification$
-            #security: false
-            #anonymous: true
-
-        cubicasa:
-            pattern: ^/api/cubicasa/webhook$
-            #anonymous: true
-
         api_login:
             pattern: ^/api/login
             #anonymous: true
